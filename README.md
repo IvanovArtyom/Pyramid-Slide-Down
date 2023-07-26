@@ -19,3 +19,21 @@ Your task is to write a function that takes a pyramid representation as an argum
 My tests include some extraordinarily high pyramids so as you can guess, brute-force method is a bad idea unless you have a few centuries to waste. You must come up with something more clever than that.
 
 (c) This task is a lyrical version of **Problem 18** and/or **Problem 67** on [ProjectEuler](https://projecteuler.net/).
+### My solution
+``` C#
+using System;
+
+public class PyramidSlideDown
+{
+    public static int LongestSlideDown(int[][] pyramid)
+    {
+        for (int i = pyramid.Length - 1; i > 0; i--)
+        {
+            for (int j = 0; j < pyramid[i].Length - 1; j++)
+                pyramid[i - 1][j] += Math.Max(pyramid[i][j], pyramid[i][j + 1]);
+        }
+
+        return pyramid[0][0];
+    }
+}
+```
